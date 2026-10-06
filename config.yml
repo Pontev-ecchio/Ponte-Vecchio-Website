@@ -1,0 +1,111 @@
+# Admin-Bereich der Ponte-Vecchio-Website (Decap CMS)
+# Login mit GitHub. Zugriff hat jeder, der Schreibrechte auf das GitHub-Repository hat:
+#   - Inhaber = Eigentümer des Repositorys (volle Rechte)
+#   - Anton   = eingeladener Mitarbeiter (Collaborator)
+
+backend:
+  name: github
+  repo: GITHUB-NAME-DES-INHABERS/ponte-vecchio-website   # <- bei der Einrichtung anpassen
+  branch: main
+  commit_messages:
+    update: "Inhalt geändert: {{slug}}"
+
+locale: de
+site_url: https://www.DOMAIN-FOLGT.de
+display_url: https://www.DOMAIN-FOLGT.de
+logo_url: /favicon.svg
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: inhalte
+    label: Website-Inhalte
+    editor: { preview: false }
+    files:
+
+      - name: oeffnungszeiten
+        label: Öffnungszeiten
+        file: content/oeffnungszeiten.json
+        format: json
+        fields:
+          - label: Wochentage
+            name: tage
+            widget: list
+            allow_add: false
+            allow_remove: false
+            summary: "{{fields.tag}}"
+            fields:
+              - { label: Tag, name: tag, widget: string }
+              - label: Zeiten (leer lassen = Ruhetag)
+                name: zeiten
+                widget: list
+                required: false
+                summary: "{{fields.von}}–{{fields.bis}}"
+                fields:
+                  - { label: Von (z. B. 10:00), name: von, widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Bitte als HH:MM eingeben, z. B. 17:30"] }
+                  - { label: Bis (z. B. 21:00), name: bis, widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Bitte als HH:MM eingeben, z. B. 21:00"] }
+          - { label: Hinweis unter den Öffnungszeiten, name: hinweis, widget: string, required: false }
+          - { label: "Sonderhinweis oben auf der Seite (z. B. Betriebsurlaub). Leer = kein Hinweis", name: sonderhinweis, widget: string, required: false }
+
+      - name: speisekarte
+        label: Speisekarte
+        file: content/speisekarte.json
+        format: json
+        fields:
+          - label: Kategorien
+            name: kategorien
+            widget: list
+            summary: "{{fields.titel}}"
+            fields:
+              - { label: Name der Kategorie, name: titel, widget: string }
+              - { label: Hinweis (optional, z. B. Nudelsorte), name: hinweis, widget: string, required: false }
+              - label: Gerichte
+                name: gerichte
+                widget: list
+                summary: "{{fields.name}} – {{fields.preis}}"
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - { label: Beschreibung / Zutaten, name: beschreibung, widget: string, required: false }
+                  - { label: "Preis (z. B. 12,00 €)", name: preis, widget: string }
+              - label: Extrazutaten (nur bei Pizza nötig)
+                name: extras
+                widget: list
+                required: false
+                summary: "{{fields.preis}}"
+                fields:
+                  - { label: "Preis (z. B. 2,00 €)", name: preis, widget: string }
+                  - { label: Zutaten, name: zutaten, widget: string }
+          - { label: Text unter der Speisekarte, name: fusszeile, widget: text, required: false }
+
+      - name: betrieb
+        label: Kontakt & Grunddaten
+        file: content/betrieb.json
+        format: json
+        fields:
+          - { label: Name des Lokals, name: name, widget: string }
+          - { label: Straße und Hausnummer, name: strasse, widget: string }
+          - { label: PLZ, name: plz, widget: string }
+          - { label: Ort, name: ort, widget: string }
+          - { label: Telefon, name: telefon, widget: string }
+          - { label: Preisniveau, name: preisniveau, widget: string }
+          - { label: "Instagram-Link (z. B. https://www.instagram.com/pontevecchio.regensburg) – leer = kein Symbol", name: instagram, widget: string, required: false }
+          - { label: "Facebook-Link (z. B. https://www.facebook.com/pontevecchio.regensburg) – leer = kein Symbol", name: facebook, widget: string, required: false }
+          - label: Bar & Café – Preise auf der Startseite
+            name: bar_auswahl
+            widget: list
+            summary: "{{fields.name}} – {{fields.preis}}"
+            fields:
+              - { label: Getränk, name: name, widget: string }
+              - { label: Preis, name: preis, widget: string }
+          - { label: "Domain (z. B. https://www.ponte-vecchio-regensburg.de)", name: domain, widget: string }
+          - { label: "Bei Google sichtbar machen (erst einschalten, wenn Impressum und Datenschutz fertig sind)", name: suchmaschinen_freigeben, widget: boolean, default: false }
+
+      - name: rechtliches
+        label: Impressum & Datenschutz
+        file: content/rechtliches.json
+        format: json
+        fields:
+          - { label: "Impressum (Überschriften mit ## beginnen, Absätze durch Leerzeile trennen)", name: impressum, widget: text }
+          - { label: Impressum ist vollständig, name: impressum_fertig, widget: boolean, default: false }
+          - { label: Datenschutzerklärung, name: datenschutz, widget: text }
+          - { label: Datenschutzerklärung ist vollständig, name: datenschutz_fertig, widget: boolean, default: false }

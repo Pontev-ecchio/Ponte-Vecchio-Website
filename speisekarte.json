@@ -1,0 +1,395 @@
+{
+  "kategorien": [
+    {
+      "titel": "Vorspeisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Bruschetta",
+          "beschreibung": "Ciabatta mit Olivenöl, Knoblauch & Tomaten",
+          "preis": "8,00 €"
+        },
+        {
+          "name": "Caprese",
+          "beschreibung": "Tomaten, Mozzarella & Brot",
+          "preis": "10,00 €"
+        },
+        {
+          "name": "Homestyle Vorspeise",
+          "beschreibung": "Verschiedene Salami & Käse",
+          "preis": "13,00 €"
+        },
+        {
+          "name": "Carpaccio",
+          "beschreibung": "Bresaola, Rucola, Parmesan, Olivenöl, Balsamico",
+          "preis": "15,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Suppen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Linsensuppe",
+          "beschreibung": "Mit Zwiebeln, Kartoffel, Karotten & Brot",
+          "preis": "8,00 €"
+        },
+        {
+          "name": "Homestyle Suppe",
+          "beschreibung": "Verschiedene Suppen",
+          "preis": "8,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Salate",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Mix Salat",
+          "beschreibung": "Salattomaten, Gurken & Zwiebeln",
+          "preis": "7,00 €"
+        },
+        {
+          "name": "Griechischer Salat",
+          "beschreibung": "Gurken, Tomaten, Zwiebeln, Feta & Oliven",
+          "preis": "10,00 €"
+        },
+        {
+          "name": "Pollo mit Brot",
+          "beschreibung": "Mix Salat & Hähnchenbrust",
+          "preis": "12,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Pizza",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Margherita",
+          "beschreibung": "Tomatensoße & Käse",
+          "preis": "9,00 €"
+        },
+        {
+          "name": "Salami Peperoni",
+          "beschreibung": "Tomatensoße, Salami, Peperoni & Käse",
+          "preis": "10,00 €"
+        },
+        {
+          "name": "Schinken",
+          "beschreibung": "Tomatensoße, Schinken & Käse",
+          "preis": "10,00 €"
+        },
+        {
+          "name": "Champignons",
+          "beschreibung": "Tomatensoße, Champignons & Käse",
+          "preis": "10,00 €"
+        },
+        {
+          "name": "Rucola",
+          "beschreibung": "Tomatensoße, Rucola, Cherrytomaten & Parmesan",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Pollo",
+          "beschreibung": "Tomatensoße, Hähnchen, Zwiebeln & Käse",
+          "preis": "13,00 €"
+        },
+        {
+          "name": "Tonno",
+          "beschreibung": "Tomatensoße, Thunfisch, Zwiebeln & Käse",
+          "preis": "13,00 €"
+        },
+        {
+          "name": "Pesto",
+          "beschreibung": "Pesto, Parmesan, Cherrytomaten & Mozzarella",
+          "preis": "14,00 €"
+        },
+        {
+          "name": "Capricciosa",
+          "beschreibung": "Tomatensoße, Schinken, Salami, Artischocken, Champignons, Oliven & Käse",
+          "preis": "14,00 €"
+        },
+        {
+          "name": "Rucola & Parma",
+          "beschreibung": "Tomatensoße, Rucola, Cherrytomaten, Parmesan & Parmaschinken",
+          "preis": "15,00 €"
+        },
+        {
+          "name": "Frutti di Mare",
+          "beschreibung": "Tomatensoße, Meeresfrüchte & Käse",
+          "preis": "15,00 €"
+        },
+        {
+          "name": "Scampi",
+          "beschreibung": "Tomatensoße, Garnelen & Käse",
+          "preis": "15,00 €"
+        },
+        {
+          "name": "Rucola & Bresaola",
+          "beschreibung": "Tomatensoße, Rucola, Cherrytomaten, Parmesan & Bresaola",
+          "preis": "15,00 €"
+        }
+      ],
+      "extras": [
+        {
+          "preis": "2,00 €",
+          "zutaten": "Artischocken, Parmesan, Sardellen, Champignons, Oliven, Peperoni, Rucola, Zwiebel"
+        },
+        {
+          "preis": "3,00 €",
+          "zutaten": "Käse, Salami, Schinken, Thunfisch"
+        },
+        {
+          "preis": "5,00 €",
+          "zutaten": "Hähnchen, Meeresfrüchte, Garnelen, Parmaschinken, Bresaola"
+        }
+      ]
+    },
+    {
+      "titel": "Pasta",
+      "hinweis": "Wahlweise mit Penne, Spaghetti oder Tagliatelle",
+      "gerichte": [
+        {
+          "name": "Pomodoro",
+          "beschreibung": "Tomatensoße",
+          "preis": "9,00 €"
+        },
+        {
+          "name": "Aglio Olio Peperoncino",
+          "beschreibung": "Olivenöl, Knoblauch, Chili",
+          "preis": "10,00 €"
+        },
+        {
+          "name": "Bolognese",
+          "beschreibung": "Tomaten-Hackfleischsoße",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Pollo",
+          "beschreibung": "Sahnesoße, Hähnchen & Parmesan",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Gorgonzola",
+          "beschreibung": "Sahne-Blauschimmelkäsesoße",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Lasagne",
+          "beschreibung": "Tomaten-Hackfleischsoße, mit Käse überbacken",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Carbonara",
+          "beschreibung": "Speck, Eigelb & Parmesan",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Pesto",
+          "beschreibung": "Grünes Pesto mit Cherrytomaten",
+          "preis": "12,00 €"
+        },
+        {
+          "name": "Frutti di Mare",
+          "beschreibung": "Meeresfrüchte",
+          "preis": "15,00 €"
+        },
+        {
+          "name": "Scampi",
+          "beschreibung": "Garnelen",
+          "preis": "15,00 €"
+        },
+        {
+          "name": "Salmone",
+          "beschreibung": "Sahnesoße & Lachsfilet",
+          "preis": "15,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Hauptspeisen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Schnitzel",
+          "beschreibung": "Hähnchenschnitzel mit Pommes oder Kartoffelpüree",
+          "preis": "13,00 €"
+        },
+        {
+          "name": "Hähnchenbrust mit Ofenkartoffel",
+          "beschreibung": "",
+          "preis": "13,00 €"
+        },
+        {
+          "name": "Ofenkartoffel mit Hähnchenkeule",
+          "beschreibung": "",
+          "preis": "15,00 €"
+        },
+        {
+          "name": "Hähnchenbrust mit Champignon-Sahne-Soße",
+          "beschreibung": "",
+          "preis": "15,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Beilagen",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Brot",
+          "beschreibung": "",
+          "preis": "3,00 €"
+        },
+        {
+          "name": "Gemüse",
+          "beschreibung": "",
+          "preis": "4,00 €"
+        },
+        {
+          "name": "Pommes",
+          "beschreibung": "",
+          "preis": "5,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Dessert",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Eiskugel",
+          "beschreibung": "",
+          "preis": "2,00 €"
+        },
+        {
+          "name": "Panna Cotta",
+          "beschreibung": "",
+          "preis": "5,00 €"
+        },
+        {
+          "name": "Crêpes",
+          "beschreibung": "",
+          "preis": "6,00 €"
+        },
+        {
+          "name": "Tiramisu",
+          "beschreibung": "",
+          "preis": "6,00 €"
+        },
+        {
+          "name": "Torte",
+          "beschreibung": "",
+          "preis": "6,00 €"
+        },
+        {
+          "name": "Pizza Nutella",
+          "beschreibung": "",
+          "preis": "10,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Heiße Getränke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Schwarzkaffee",
+          "beschreibung": "",
+          "preis": "2,00 €"
+        },
+        {
+          "name": "Tee",
+          "beschreibung": "",
+          "preis": "2,00 €"
+        },
+        {
+          "name": "Espresso",
+          "beschreibung": "",
+          "preis": "3,00 €"
+        },
+        {
+          "name": "Cappuccino",
+          "beschreibung": "",
+          "preis": "4,00 €"
+        },
+        {
+          "name": "Latte Macchiato",
+          "beschreibung": "",
+          "preis": "5,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Kalte Getränke",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Coca-Cola, Coca-Cola Zero, Fanta, Sprite, Mezzo Mix",
+          "beschreibung": "0,33 l",
+          "preis": "4,00 €"
+        },
+        {
+          "name": "Wasser",
+          "beschreibung": "0,75 l",
+          "preis": "5,00 €"
+        },
+        {
+          "name": "Wasser",
+          "beschreibung": "0,25 l",
+          "preis": "3,50 €"
+        },
+        {
+          "name": "Red Bull",
+          "beschreibung": "0,25 l",
+          "preis": "5,00 €"
+        },
+        {
+          "name": "Tonic Water, Bitter Lemon",
+          "beschreibung": "0,2 l",
+          "preis": "4,00 €"
+        },
+        {
+          "name": "Bier",
+          "beschreibung": "0,33 l",
+          "preis": "4,50 €"
+        },
+        {
+          "name": "Bier",
+          "beschreibung": "0,5 l",
+          "preis": "5,50 €"
+        },
+        {
+          "name": "Wein",
+          "beschreibung": "0,25 l",
+          "preis": "6,00 €"
+        }
+      ]
+    },
+    {
+      "titel": "Bar",
+      "hinweis": "",
+      "gerichte": [
+        {
+          "name": "Spirituosen",
+          "beschreibung": "Jack Daniel's, Wodka, Havana Club, Gin, Tequila, Jägermeister",
+          "preis": "2 cl 6,00 € · 4 cl 12,00 €"
+        },
+        {
+          "name": "Aperol Spritz",
+          "beschreibung": "",
+          "preis": "8,00 €"
+        },
+        {
+          "name": "Cocktail",
+          "beschreibung": "",
+          "preis": "10,00 €"
+        }
+      ]
+    }
+  ],
+  "fusszeile": "Alle Preise in Euro inkl. MwSt. Informationen zu Allergenen und Zusatzstoffen erhalten Sie auf Nachfrage bei unserem Personal."
+}

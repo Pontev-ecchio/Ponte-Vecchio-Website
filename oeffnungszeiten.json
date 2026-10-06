@@ -1,0 +1,85 @@
+{
+  "tage": [
+    {
+      "tag": "Montag",
+      "zeiten": [
+        {
+          "von": "10:00",
+          "bis": "15:00"
+        }
+      ]
+    },
+    {
+      "tag": "Dienstag",
+      "zeiten": [
+        {
+          "von": "10:00",
+          "bis": "14:00"
+        },
+        {
+          "von": "17:30",
+          "bis": "21:00"
+        }
+      ]
+    },
+    {
+      "tag": "Mittwoch",
+      "zeiten": [
+        {
+          "von": "10:00",
+          "bis": "14:00"
+        },
+        {
+          "von": "17:30",
+          "bis": "21:00"
+        }
+      ]
+    },
+    {
+      "tag": "Donnerstag",
+      "zeiten": [
+        {
+          "von": "10:00",
+          "bis": "14:00"
+        },
+        {
+          "von": "17:30",
+          "bis": "21:00"
+        }
+      ]
+    },
+    {
+      "tag": "Freitag",
+      "zeiten": [
+        {
+          "von": "10:00",
+          "bis": "14:00"
+        },
+        {
+          "von": "17:30",
+          "bis": "21:00"
+        }
+      ]
+    },
+    {
+      "tag": "Samstag",
+      "zeiten": [
+        {
+          "von": "17:30",
+          "bis": "21:00"
+        }
+      ]
+    },
+    {
+      "tag": "Sonntag",
+      "zeiten": [
+        {
+          "von": "17:30",
+          "bis": "21:00"
+        }
+      ]
+    }
+  ],
+  "hinweis": "Mittags und abends warme Küche. Alle Speisen auch zum Mitnehmen.",
+  "sonderhinweis": ""
+}
