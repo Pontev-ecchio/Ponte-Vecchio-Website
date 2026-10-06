@@ -14,8 +14,14 @@ DIST = os.path.join(ROOT, "dist")
 e = html.escape
 
 
+def find(name, sub):
+    """Datei im Unterordner suchen, sonst in der Hauptebene (GitHub-Upload ohne Ordner)."""
+    p = os.path.join(ROOT, sub, name)
+    return p if os.path.exists(p) else os.path.join(ROOT, name)
+
+
 def load(name):
-    with open(os.path.join(ROOT, "content", name), encoding="utf-8") as f:
+    with open(find(name, "content"), encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -286,8 +292,24 @@ def write(path, content):
 def main():
     if os.path.exists(DIST):
         shutil.rmtree(DIST)
-    shutil.copytree(os.path.join(ROOT, "static"), DIST, ignore=shutil.ignore_patterns("fonts"))
-    shutil.copytree(os.path.join(ROOT, "admin"), os.path.join(DIST, "admin"))
+    os.makedirs(os.path.join(DIST, "img"), exist_ok=True)
+    os.makedirs(os.path.join(DIST, "admin"), exist_ok=True)
+    if os.path.isdir(os.path.join(ROOT, "static")):
+        shutil.copytree(os.path.join(ROOT, "static"), DIST, ignore=shutil.ignore_patterns("fonts"), dirs_exist_ok=True)
+    if os.path.isdir(os.path.join(ROOT, "admin")):
+        shutil.copytree(os.path.join(ROOT, "admin"), os.path.join(DIST, "admin"), dirs_exist_ok=True)
+    # Dateien, die lose in der Hauptebene liegen
+    for f in os.listdir(ROOT):
+        src = os.path.join(ROOT, f)
+        if not os.path.isfile(src):
+            continue
+        low = f.lower()
+        if low.endswith((".jpg", ".jpeg", ".png", ".webp", ".gif")):
+            shutil.copy(src, os.path.join(DIST, "img", f))
+        elif f in ("style.css", "main.js", "favicon.svg"):
+            shutil.copy(src, os.path.join(DIST, f))
+        elif f in ("index.html", "config.yml"):
+            shutil.copy(src, os.path.join(DIST, "admin", f))
     fonts()
     write("/", page_home())
     write("/speisekarte/", page_menu())

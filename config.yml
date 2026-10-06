@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: GITHUB-NAME-DES-INHABERS/ponte-vecchio-website   # <- bei der Einrichtung anpassen
+  repo: Pontev-ecchio/Ponte-Vecchio-Website
   branch: main
   commit_messages:
     update: "Inhalt geändert: {{slug}}"
@@ -25,7 +25,7 @@ collections:
 
       - name: oeffnungszeiten
         label: Öffnungszeiten
-        file: content/oeffnungszeiten.json
+        file: oeffnungszeiten.json
         format: json
         fields:
           - label: Wochentage
@@ -49,7 +49,7 @@ collections:
 
       - name: speisekarte
         label: Speisekarte
-        file: content/speisekarte.json
+        file: speisekarte.json
         format: json
         fields:
           - label: Kategorien
@@ -79,7 +79,7 @@ collections:
 
       - name: betrieb
         label: Kontakt & Grunddaten
-        file: content/betrieb.json
+        file: betrieb.json
         format: json
         fields:
           - { label: Name des Lokals, name: name, widget: string }
@@ -102,7 +102,7 @@ collections:
 
       - name: rechtliches
         label: Impressum & Datenschutz
-        file: content/rechtliches.json
+        file: rechtliches.json
         format: json
         fields:
           - { label: "Impressum (Überschriften mit ## beginnen, Absätze durch Leerzeile trennen)", name: impressum, widget: text }
