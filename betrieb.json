@@ -1,12 +1,4 @@
 {
-  "name": "Ponte Vecchio Bar & Pizzeria",
-  "strasse": "Straubinger Str. 81",
-  "plz": "93055",
-  "ort": "Regensburg",
-  "telefon": "+49 15510 621579",
-  "preisniveau": "10–20 € pro Person",
-  "domain": "https://www.DOMAIN-FOLGT.de",
-  "suchmaschinen_freigeben": false,
   "bar_auswahl": [
     {
       "name": "Espresso",
@@ -37,6 +29,14 @@
       "preis": "10,00 €"
     }
   ],
+  "domain": "https://pontevecchio-regensburg.com",
+  "facebook": "",
+  "suchmaschinen_freigeben": false,
+  "preisniveau": "10–20 € pro Person",
+  "name": "Ponte Vecchio Bar & Pizzeria",
+  "ort": "Regensburg",
   "instagram": "",
-  "facebook": ""
+  "strasse": "Straubinger Str. 81",
+  "telefon": "+49 15510 621579",
+  "plz": "93055"
 }
