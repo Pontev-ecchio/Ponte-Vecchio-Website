@@ -1,3 +1,4 @@
+
 # Ponte Vecchio Website – Einrichtung & Bedienung
 
 **Grundregel:** Alle Konten (GitHub, Netlify, Domain) laufen auf den **Inhaber** und seine E-Mail-Adresse.
