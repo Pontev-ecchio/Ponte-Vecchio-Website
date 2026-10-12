@@ -214,3 +214,15 @@ address strong{font:600 1.5rem/1.2 var(--f-display);display:block;margin-bottom:
 .soc{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.5rem .95rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--beige);font-size:.88rem;transition:border-color .2s,color .2s}
 .soc:hover{border-color:var(--amber);color:var(--cream)}
 .soc svg{width:18px;height:18px}
+/* Cookie-Banner (nur aktiv, wenn eine Meta-Pixel-ID eingetragen ist) */
+.cc{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 var(--gutter) calc(1rem + var(--safe-b))}
+.cc[hidden]{display:none}
+.cc-box{max-width:720px;margin:0 auto;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem;box-shadow:0 20px 50px -20px #000;display:grid;gap:.7rem}
+.cc-t{font:600 1.25rem/1.2 var(--f-display);color:var(--cream)}
+.cc-x{font-size:.88rem;line-height:1.55;color:var(--beige)}
+.cc-x a{color:var(--cream)}
+.cc-b{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.cc-b .btn{min-height:44px;cursor:pointer;background:transparent}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}
+.linkbtn:hover{color:var(--cream)}
+@media (max-width:760px){.cc{bottom:calc(62px + var(--safe-b));padding-bottom:.6rem}}

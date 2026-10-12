@@ -35,6 +35,8 @@ INDEX = bool(B.get("suchmaschinen_freigeben"))
 TEL = "+" + re.sub(r"\D", "", B["telefon"])
 ADDR_Q = f'{B["name"]}, {B["strasse"]}, {B["plz"]} {B["ort"]}'
 MAPS = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote_plus(ADDR_Q)
+# Meta Pixel: nur Ziffern erlaubt. Leer = kein Pixel und kein Cookie-Banner.
+PIXEL = re.sub(r"\D", "", str(B.get("meta_pixel_id", "")))
 
 
 def slug(t):
@@ -105,7 +107,7 @@ FB = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M
 
 
 def social():
-    """Nur einfache Links: keine Einbettung, keine Cookies, kein Banner nötig."""
+    """Nur einfache Links: keine Einbettung, keine Cookies."""
     out = []
     if B.get("instagram", "").strip():
         out.append(f'<a class="soc" href="{e(B["instagram"].strip())}" target="_blank" rel="noopener" aria-label="Ponte Vecchio auf Instagram">{IG}<span>Instagram</span></a>')
@@ -114,7 +116,27 @@ def social():
     return f'<div class="socials">{"".join(out)}</div>' if out else ""
 
 
+def consent():
+    """Cookie-Banner für den Meta Pixel. Der Pixel lädt erst nach Klick auf „Akzeptieren“."""
+    if not PIXEL:
+        return ""
+    cfg = json.dumps({"pixel": PIXEL})
+    return f"""<div class="cc" id="cc" role="dialog" aria-modal="false" aria-labelledby="cc-t" hidden>
+  <div class="cc-box">
+    <p class="cc-t" id="cc-t">Cookies &amp; Werbung</p>
+    <p class="cc-x">Mit Ihrer Zustimmung nutzen wir den Meta Pixel (Facebook/Instagram), um zu messen, wie gut unsere Werbung wirkt, und um Ihnen passende Anzeigen zu zeigen. Dabei werden Daten an Meta übermittelt, auch in die USA. Ohne Zustimmung funktioniert die Website genauso. Sie können Ihre Wahl jederzeit unten auf der Seite unter „Cookie-Einstellungen“ ändern. Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+    <div class="cc-b">
+      <button type="button" class="btn btn-ghost" data-cc="no">Ablehnen</button>
+      <button type="button" class="btn btn-ghost" data-cc="yes">Akzeptieren</button>
+    </div>
+  </div>
+</div>
+<script id="consent-cfg" type="application/json">{cfg}</script>
+"""
+
+
 def footer():
+    cc_link = '<li><button type="button" class="linkbtn" data-cc="open">Cookie-Einstellungen</button></li>' if PIXEL else ""
     return f"""</main>
 <footer class="ftr">
   <div class="wrap">
@@ -129,7 +151,7 @@ def footer():
     </div>
     <div>
       <h3>Rechtliches</h3>
-      <ul><li><a href="/impressum/">Impressum</a></li><li><a href="/datenschutz/">Datenschutz</a></li></ul>
+      <ul><li><a href="/impressum/">Impressum</a></li><li><a href="/datenschutz/">Datenschutz</a></li>{cc_link}</ul>
     </div>
     <p class="copy">© {date.today().year} {e(B['name'])}</p>
   </div>
@@ -139,7 +161,7 @@ def footer():
   <a href="tel:{TEL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
   <a href="{e(MAPS)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Route</a>
 </nav>
-<script src="/main.js" defer></script>
+{consent()}<script src="/main.js" defer></script>
 </body>
 </html>
 """

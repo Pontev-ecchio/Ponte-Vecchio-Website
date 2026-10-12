@@ -11,8 +11,8 @@ backend:
     update: "Inhalt geändert: {{slug}}"
 
 locale: de
-site_url: https://www.DOMAIN-FOLGT.de
-display_url: https://www.DOMAIN-FOLGT.de
+site_url: https://pontevecchio-regensburg.com
+display_url: https://pontevecchio-regensburg.com
 logo_url: /favicon.svg
 media_folder: static/img
 public_folder: /img
@@ -90,6 +90,7 @@ collections:
           - { label: Preisniveau, name: preisniveau, widget: string }
           - { label: "Instagram-Link (z. B. https://www.instagram.com/pontevecchio.regensburg) – leer = kein Symbol", name: instagram, widget: string, required: false }
           - { label: "Facebook-Link (z. B. https://www.facebook.com/pontevecchio.regensburg) – leer = kein Symbol", name: facebook, widget: string, required: false }
+          - { label: "Meta-Pixel-ID (nur Ziffern, aus dem Meta Events Manager). Leer = kein Pixel und kein Cookie-Banner. Vorher Datenschutzerklärung ergänzen!", name: meta_pixel_id, widget: string, required: false }
           - label: Bar & Café – Preise auf der Startseite
             name: bar_auswahl
             widget: list

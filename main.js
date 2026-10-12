@@ -45,4 +45,56 @@
     }, { rootMargin: "-45% 0px -50% 0px" });
     document.querySelectorAll(".cat").forEach(function (c) { io.observe(c); });
   }
+
+  // Cookie-Banner + Meta Pixel (lädt NUR nach Zustimmung)
+  var cfgEl = document.getElementById("consent-cfg"), cc = document.getElementById("cc");
+  if (cfgEl && cc) {
+    var PIX = "";
+    try { PIX = JSON.parse(cfgEl.textContent).pixel || ""; } catch (e) {}
+    var KEY = "pv-consent-v1";
+    var read = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    var save = function (v) { try { localStorage.setItem(KEY, v); } catch (e) {} };
+    var loaded = false;
+    var loadPixel = function () {
+      if (loaded || !PIX) return;
+      loaded = true;
+      /* Offizieller Meta-Pixel-Code */
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      window.fbq("init", PIX);
+      window.fbq("track", "PageView");
+    };
+    var show = function () { cc.hidden = false; };
+    var choice = read();
+    if (choice === "yes") loadPixel(); else if (choice !== "no") show();
+    document.addEventListener("click", function (ev) {
+      var t = ev.target.closest("[data-cc]");
+      if (t) {
+        var a = t.getAttribute("data-cc");
+        if (a === "open") { show(); return; }
+        save(a); cc.hidden = true;
+        if (a === "yes") loadPixel();
+        else {
+          // Widerruf: Meta-Cookies löschen, ggf. Seite ohne Pixel neu laden
+          ["_fbp", "_fbc"].forEach(function (n) {
+            var host = location.hostname, parts = host.split("."), doms = [""];
+            for (var i = 0; i < parts.length - 1; i++) doms.push("; domain=." + parts.slice(i).join("."));
+            doms.forEach(function (d) { document.cookie = n + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + d; });
+          });
+          if (loaded) location.reload();
+        }
+        return;
+      }
+      // Anrufe und Routen als „Kontakt“ zählen (nur wenn Pixel aktiv)
+      var l = ev.target.closest("a[href]");
+      if (l && loaded && window.fbq) {
+        var h = l.getAttribute("href");
+        if (h.indexOf("tel:") === 0) window.fbq("track", "Contact");
+        else if (h.indexOf("google.com/maps") > -1) window.fbq("track", "FindLocation");
+      }
+    });
+  }
 })();
