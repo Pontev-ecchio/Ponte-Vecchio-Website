@@ -64,6 +64,7 @@
         if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
         t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
       }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      window.fbq("set", "autoConfig", false, PIX); // keine automatische Klick-Erfassung durch Meta
       window.fbq("init", PIX);
       window.fbq("track", "PageView");
     };
