@@ -230,7 +230,8 @@ def reviews_section():
         return ""
     write, show = review_links()
     cards = []
-    for r in RV.get("bewertungen", [])[:6]:
+    real = [r for r in RV.get("bewertungen", []) if not r.get("beispiel")]
+    for r in real[:6]:
         img = (f'<div class="photo rv-photo"><img src="{e(r["bild"])}" alt="{e(r.get("bild_alt", ""))}" loading="lazy" decoding="async"></div>'
                if r.get("bild", "").strip() else "")
         tag = '<span class="rv-demo">Beispiel</span>' if r.get("beispiel") else ""
@@ -249,16 +250,15 @@ def reviews_section():
       <div class="rv-head">
         <div class="sec-head" style="margin:0">
           <p class="eyebrow">Bewertungen</p>
-          <h2 id="rv-h">{e(RV.get("ueberschrift", "Was unsere Gäste sagen"))}</h2>
-          {score}
+          <h2 id="rv-h">{e(RV.get("ueberschrift", "Was unsere Gäste sagen")) if cards else "Wie war Ihr Besuch?"}</h2>
+          {score}{"" if cards else '<p class="lede">Wir freuen uns über Ihre Bewertung auf Google. Das dauert nur eine Minute und hilft uns sehr.</p>'}
         </div>
         <div class="cta-row">
           <a class="btn btn-gold" href="{e(write)}" target="_blank" rel="noopener">{GOOGLE_G}Auf Google bewerten</a>
           <a class="btn btn-ghost" href="{e(show)}" target="_blank" rel="noopener">Alle Bewertungen</a>
         </div>
       </div>
-      <ul class="rv-list rv-n{len(cards)}">{"".join(cards)}</ul>
-      <p class="rv-note">Ausgewählte Bewertungen von Gästen auf Google. Alle Bewertungen finden Sie auf unserem Google-Profil.</p>
+      {f'<ul class="rv-list rv-n{len(cards)}">{"".join(cards)}</ul><p class="rv-note">Ausgewählte Bewertungen von Gästen auf Google. Alle Bewertungen finden Sie auf unserem Google-Profil.</p>' if cards else ""}
     </div>
   </section>
 """

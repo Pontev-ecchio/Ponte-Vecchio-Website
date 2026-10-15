@@ -346,3 +346,4 @@ body[data-page] .cc{bottom:calc(80px + var(--safe-b))}
 .rv-by b{font:600 1.1rem/1.2 var(--f-display);color:var(--cream)}
 .rv-note{margin-top:1.2rem;font-size:.82rem;color:var(--muted)}
 @media (min-width:900px){.rv-list.rv-n4,.rv-list.rv-n2{grid-template-columns:repeat(2,1fr)}.rv-list.rv-n1{grid-template-columns:minmax(0,420px)}}
+#bewertungen .rv-head:last-child{margin-bottom:0}
