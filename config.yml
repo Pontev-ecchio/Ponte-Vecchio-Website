@@ -110,3 +110,34 @@ collections:
           - { label: Impressum ist vollständig, name: impressum_fertig, widget: boolean, default: false }
           - { label: Datenschutzerklärung, name: datenschutz, widget: text }
           - { label: Datenschutzerklärung ist vollständig, name: datenschutz_fertig, widget: boolean, default: false }
+
+      - name: allergene
+        label: Allergene & Zusatzstoffe
+        file: allergene.json
+        format: json
+        fields:
+          - { label: Einleitungstext, name: einleitung, widget: text }
+          - label: Allergene (Erklärung der Buchstaben)
+            name: allergene
+            widget: list
+            summary: "{{fields.code}} – {{fields.name}}"
+            fields:
+              - { label: Buchstabe (z. B. A), name: code, widget: string }
+              - { label: Bezeichnung, name: name, widget: string }
+              - { label: "Unterteilung (optional, z. B. A.1 Weizen · A.2 Gerste)", name: unterteilung, widget: string, required: false }
+          - label: Kategorien
+            name: kategorien
+            widget: list
+            summary: "{{fields.titel}}"
+            fields:
+              - { label: Name der Kategorie, name: titel, widget: string }
+              - { label: Hinweis (optional), name: hinweis, widget: string, required: false }
+              - label: Gerichte
+                name: gerichte
+                widget: list
+                summary: "{{fields.name}} – {{fields.kennzeichnung}}"
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - { label: "Kennzeichnung (z. B. A.1, C, G)", name: kennzeichnung, widget: string }
+          - { label: "Fußnote (z. B. * kann Spuren enthalten)", name: fussnote, widget: string, required: false }
+          - { label: Schlusshinweis, name: schlusshinweis, widget: string, required: false }

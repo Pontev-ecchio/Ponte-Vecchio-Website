@@ -29,6 +29,8 @@ B = load("betrieb.json")
 H = load("oeffnungszeiten.json")
 M = load("speisekarte.json")
 R = load("rechtliches.json")
+AL = load("allergene.json")
+AL_PATH = "/allergene-und-zusatzstoffe/"
 
 DOMAIN = B.get("domain", "").rstrip("/")
 INDEX = bool(B.get("suchmaschinen_freigeben"))
@@ -151,7 +153,7 @@ def footer():
     </div>
     <div>
       <h3>Rechtliches</h3>
-      <ul><li><a href="/impressum/">Impressum</a></li><li><a href="/datenschutz/">Datenschutz</a></li>{cc_link}</ul>
+      <ul><li><a href="/impressum/">Impressum</a></li><li><a href="/datenschutz/">Datenschutz</a></li><li><a href="{AL_PATH}">Allergene &amp; Zusatzstoffe</a></li>{cc_link}</ul>
     </div>
     <p class="copy">© {date.today().year} {e(B['name'])}</p>
   </div>
@@ -239,6 +241,7 @@ def page_menu():
         cats.append(f'<section class="cat" id="{sid}" aria-labelledby="h-{sid}"><h2 id="h-{sid}">{e(k["titel"])}</h2>{note}'
                     f'<ul class="dishes">{"".join(lis)}</ul>{extra}</section>')
     foot = "".join(f"<p>{e(x.strip())}</p>" for x in re.split(r"(?<=\.)\s+", M.get("fusszeile", "")) if x.strip())
+    foot += f'<p><a class="al-link" href="{AL_PATH}">Allergene &amp; Zusatzstoffe ansehen <span aria-hidden="true">→</span></a></p>'
     body = f"""<div class="wrap menu-hero">
     <p class="eyebrow">Ponte Vecchio · {e(B['ort'])}</p>
     <h1 style="margin-top:.8rem">Speisekarte</h1>
@@ -256,6 +259,38 @@ def page_menu():
     return (head("Speisekarte | Ponte Vecchio Regensburg",
                  "Speisekarte des Ponte Vecchio in Regensburg: Pizza, Pasta, Vorspeisen, Salate, Desserts, Kaffee und Drinks mit Preisen.", "/speisekarte/")
             + header("menu") + body + footer())
+
+
+def page_allergene():
+    legend = []
+    for a in AL.get("allergene", []):
+        sub = f'<span class="al-sub">{e(a["unterteilung"])}</span>' if a.get("unterteilung", "").strip() else ""
+        legend.append(f'<li><span class="al-code">{e(a["code"])}</span><span><span class="al-name">{e(a["name"])}</span>{sub}</span></li>')
+    cats = []
+    for k in AL.get("kategorien", []):
+        sid = "a-" + slug(k["titel"])
+        note = f'<p class="cat-note">{e(k["hinweis"])}</p>' if k.get("hinweis", "").strip() else ""
+        lis = "".join(f'<li class="dish"><div class="dish-h"><h3>{e(g["name"])}</h3><span class="lead" aria-hidden="true"></span>'
+                      f'<span class="price">{e(g.get("kennzeichnung", ""))}</span></div></li>' for g in k.get("gerichte", []))
+        cats.append(f'<section class="cat" id="{sid}" aria-labelledby="h-{sid}"><h2 id="h-{sid}">{e(k["titel"])}</h2>{note}'
+                    f'<ul class="dishes">{lis}</ul></section>')
+    fn = f'<p>{e(AL["fussnote"])}</p>' if AL.get("fussnote", "").strip() else ""
+    ask = AL.get("schlusshinweis", "").strip()
+    ask = f'<div class="al-ask"><p class="al-ask-t">{e(ask)}</p></div>' if ask else ""
+    body = f"""<div class="wrap menu-hero">
+    <p class="eyebrow">Ponte Vecchio · {e(B['ort'])}</p>
+    <h1 style="margin-top:.8rem">Allergene und Zusatzstoffe</h1>
+    <p class="lede" style="margin-top:1rem">{e(AL.get('einleitung', ''))}</p>
+  </div>
+  <div class="wrap">
+    <section class="al-legend" aria-labelledby="h-allergene"><h2 id="h-allergene">Allergene</h2><ul>{''.join(legend)}</ul></section>
+  </div>
+  <div class="wrap menu-body">{''.join(cats)}</div>
+  <div class="wrap menu-foot">{fn}{ask}<p><a class="al-link" href="/speisekarte/">Zur Speisekarte <span aria-hidden="true">→</span></a></p></div>
+"""
+    return (head("Allergene und Zusatzstoffe | Ponte Vecchio Regensburg",
+                 "Allergene und Zusatzstoffe der Speisen im Ponte Vecchio in Regensburg: Vorspeisen, Pasta, Pizza, Hauptspeisen und Desserts.", AL_PATH)
+            + header() + body + footer())
 
 
 def md(text):
@@ -337,9 +372,10 @@ def main():
     write("/speisekarte/", page_menu())
     write("/impressum/", page_legal("impressum"))
     write("/datenschutz/", page_legal("datenschutz"))
+    write(AL_PATH, page_allergene())
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write("User-agent: *\nDisallow: /admin/\n" + (f"Sitemap: {DOMAIN}/sitemap.xml\n" if INDEX else "Disallow: /\n"))
-    urls = "".join(f"<url><loc>{e(DOMAIN)}{p}</loc></url>" for p in ["/", "/speisekarte/", "/impressum/", "/datenschutz/"])
+    urls = "".join(f"<url><loc>{e(DOMAIN)}{p}</loc></url>" for p in ["/", "/speisekarte/", AL_PATH, "/impressum/", "/datenschutz/"])
     with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
         f.write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     print("Fertig: dist/")
