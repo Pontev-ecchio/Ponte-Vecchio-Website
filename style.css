@@ -325,3 +325,24 @@ body[data-page] .cc{bottom:calc(80px + var(--safe-b))}
 .al-ask-t{font:600 1.3rem/1.2 var(--f-display);color:var(--cream)}
 .al-link{color:var(--amber);text-decoration:none;font-weight:600}
 .al-link:hover{color:var(--cream)}
+
+/* Bewertungen */
+.rv-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.4rem 2rem;margin-bottom:clamp(1.6rem,4vw,2.6rem)}
+.rv-head .btn svg{width:18px;height:18px;background:#fff;border-radius:50%;padding:2px}
+.rv-score{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem;color:var(--beige)}
+.rv-score b{font:600 2rem/1 var(--f-display);color:var(--cream)}
+.rv-list{list-style:none;margin:0;padding:0 0 .4rem;display:grid;grid-auto-flow:column;grid-auto-columns:min(82%,320px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.rv-list::-webkit-scrollbar{display:none}
+@media (min-width:900px){.rv-list{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);overflow:visible}}
+.rv-card{scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rv-photo{aspect-ratio:4/3}
+.rv-body{display:flex;flex-direction:column;gap:.8rem;padding:1.1rem 1.2rem 1.2rem;flex:1}
+.rv-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.rv-stars{color:var(--amber);letter-spacing:.12em;font-size:1rem;line-height:1}
+.rv-off{color:#cdb99c40}
+.rv-demo{font:600 .62rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--beige);padding:.3rem .5rem;border-radius:4px}
+.rv-text{color:var(--beige);font-size:.95rem;flex:1;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.rv-by{display:grid;gap:.1rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.8rem}
+.rv-by b{font:600 1.1rem/1.2 var(--f-display);color:var(--cream)}
+.rv-note{margin-top:1.2rem;font-size:.82rem;color:var(--muted)}
+@media (min-width:900px){.rv-list.rv-n4,.rv-list.rv-n2{grid-template-columns:repeat(2,1fr)}.rv-list.rv-n1{grid-template-columns:minmax(0,420px)}}

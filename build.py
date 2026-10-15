@@ -30,6 +30,7 @@ H = load("oeffnungszeiten.json")
 M = load("speisekarte.json")
 R = load("rechtliches.json")
 O = load("bestellung.json")
+RV = load("bewertungen.json")
 AL = load("allergene.json")
 AL_PATH = "/allergene-und-zusatzstoffe/"
 
@@ -207,6 +208,59 @@ def schema():
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
 
+# ---------- Bewertungen (Auswahl echter Google-Bewertungen + Bewerten-Button) ----------
+GOOGLE_G = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-1.9 3.2-4.8 3.2-8.2z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4z"/></svg>'
+
+
+def review_links():
+    pid = RV.get("google_place_id", "").strip()
+    write = f"https://search.google.com/local/writereview?placeid={urllib.parse.quote(pid)}" if pid else MAPS
+    show = RV.get("google_link", "").strip() or (f"https://search.google.com/local/reviews?placeid={urllib.parse.quote(pid)}" if pid else MAPS)
+    return write, show
+
+
+def stars(n):
+    n = max(0, min(5, int(n or 0)))
+    return f'<span class="rv-stars" role="img" aria-label="{n} von 5 Sternen">{"★" * n}<span class="rv-off">{"★" * (5 - n)}</span></span>'
+
+
+def reviews_section():
+    if not RV.get("anzeigen"):
+        return ""
+    write, show = review_links()
+    cards = []
+    for r in RV.get("bewertungen", [])[:6]:
+        img = (f'<div class="photo rv-photo"><img src="{e(r["bild"])}" alt="{e(r.get("bild_alt", ""))}" loading="lazy" decoding="async"></div>'
+               if r.get("bild", "").strip() else "")
+        tag = '<span class="rv-demo">Beispiel</span>' if r.get("beispiel") else ""
+        cards.append(f'<li class="rv-card">{img}<div class="rv-body"><div class="rv-top">{stars(r.get("sterne", 5))}{tag}</div>'
+                     f'<p class="rv-text">{e(r.get("text", ""))}</p>'
+                     f'<p class="rv-by"><b>{e(r.get("name", ""))}</b><span>{e(r.get("datum", ""))} · Google</span></p></div></li>')
+    avg = RV.get("durchschnitt", "").strip()
+    cnt = RV.get("anzahl", "").strip()
+    score = (f'<p class="rv-score"><b>{e(avg)}</b>{stars(round(float(avg.replace(",", ".")))) if re.match(r"^[0-5]([.,]\\d)?$", avg) else ""}'
+             f'<span>{e(cnt) + " Bewertungen" if cnt else ""} auf Google</span></p>') if avg else ""
+    return f"""
+  <section class="sec" id="bewertungen" aria-labelledby="rv-h">
+    <div class="wrap">
+      <div class="rv-head">
+        <div class="sec-head" style="margin:0">
+          <p class="eyebrow">Bewertungen</p>
+          <h2 id="rv-h">{e(RV.get("ueberschrift", "Was unsere Gäste sagen"))}</h2>
+          {score}
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="{e(write)}" target="_blank" rel="noopener">{GOOGLE_G}Auf Google bewerten</a>
+          <a class="btn btn-ghost" href="{e(show)}" target="_blank" rel="noopener">Alle Bewertungen</a>
+        </div>
+      </div>
+      <ul class="rv-list rv-n{len(cards)}">{"".join(cards)}</ul>
+      <p class="rv-note">Ausgewählte Bewertungen von Gästen auf Google. Alle Bewertungen finden Sie auf unserem Google-Profil.</p>
+    </div>
+  </section>
+"""
+
+
 # ---------- Seiten ----------
 def page_home():
     t = open(os.path.join(ROOT, "templates_home.html"), encoding="utf-8").read()
@@ -217,7 +271,7 @@ def page_home():
          .replace("{{HOURS_NOTE}}", e(H.get("hinweis", ""))).replace("{{TEL}}", TEL)
          .replace("{{TEL_TXT}}", e(B["telefon"])).replace("{{MAPS}}", e(MAPS))
          .replace("{{EYEBROW}}", e(f'{B["strasse"]} · {B["ort"]}'))
-         .replace("{{SOCIAL}}", social()))
+         .replace("{{SOCIAL}}", social()).replace("{{REVIEWS}}", reviews_section()))
     t += f'<script id="hours-data" type="application/json">{hours_js()}</script>' + schema()
     return (head("Ponte Vecchio Regensburg | Bar, Café & Pizzeria",
                  "Pizza, Pasta, Kaffee und Drinks im Ponte Vecchio in Regensburg. Speisekarte, Öffnungszeiten, Adresse und telefonische Reservierung auf einen Blick.", "/")

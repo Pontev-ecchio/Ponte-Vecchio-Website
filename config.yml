@@ -131,6 +131,31 @@ collections:
               - { label: "Auswahl für den Gast, mit Komma getrennt (z. B. Rotwein, Weißwein). Leer = keine Auswahl", name: auswahl, widget: string, required: false }
               - { label: "Größe für die Bestellnachricht (z. B. Flasche 0,75 l)", name: groesse, widget: string, required: false }
 
+      - name: bewertungen
+        label: Bewertungen (Startseite)
+        file: bewertungen.json
+        format: json
+        fields:
+          - { label: Bereich auf der Startseite anzeigen, name: anzeigen, widget: boolean, default: true }
+          - { label: Überschrift, name: ueberschrift, widget: string }
+          - { label: "Google Place-ID (für den direkten Bewerten-Link, beginnt meist mit ChIJ)", name: google_place_id, widget: string, required: false }
+          - { label: "Link zu allen Bewertungen auf Google (optional)", name: google_link, widget: string, required: false }
+          - { label: "Durchschnitt auf Google (z. B. 4,8) – leer = nicht anzeigen", name: durchschnitt, widget: string, required: false }
+          - { label: "Anzahl Bewertungen auf Google (z. B. 37)", name: anzahl, widget: string, required: false }
+          - label: "Ausgewählte Bewertungen (4 oder 6 sehen am schönsten aus, max. 6; nur echte Google-Bewertungen wörtlich übernehmen)"
+            name: bewertungen
+            widget: list
+            max: 6
+            summary: "{{fields.name}} – {{fields.sterne}} Sterne"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Sterne, name: sterne, widget: number, value_type: int, min: 1, max: 5, default: 5 }
+              - { label: "Datum (z. B. vor 2 Wochen)", name: datum, widget: string, required: false }
+              - { label: Text (wörtlich aus Google), name: text, widget: text }
+              - { label: Bild, name: bild, widget: image, required: false }
+              - { label: Bildbeschreibung, name: bild_alt, widget: string, required: false }
+              - { label: "Beispieltext (Platzhalter) – vor dem Livegang ausschalten", name: beispiel, widget: boolean, default: false }
+
       - name: rechtliches
         label: Impressum & Datenschutz
         file: rechtliches.json
