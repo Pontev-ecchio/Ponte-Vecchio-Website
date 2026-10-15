@@ -310,3 +310,4 @@ body.o-lock{overflow:hidden}
 .o-res-sum p{font:500 1.35rem/1.35 var(--f-display)}
 body[data-page] .cc{bottom:calc(80px + var(--safe-b))}
 @media (max-width:760px){body[data-page] .cc{bottom:calc(80px + var(--safe-b))}}
+.nav .btn-gold{color:#1a1510}
