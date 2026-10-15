@@ -1,0 +1,83 @@
+{
+  "einleitung": "Informationen über Zutaten, die Allergien oder Unverträglichkeiten auslösen können, sowie über kennzeichnungspflichtige Zusatzstoffe erhalten Sie auf Nachfrage bei unserem Personal. Eine schriftliche Dokumentation zu Allergenen, Zutaten, Verarbeitungshilfsstoffen und Zusatzstoffen liegt zur Einsichtnahme vor.",
+  "allergene": [
+    { "code": "A", "name": "Glutenhaltiges Getreide", "unterteilung": "A.1 Weizen · A.2 Gerste · A.3 Roggen · A.4 Hafer · A.5 Dinkel" },
+    { "code": "B", "name": "Krebstiere", "unterteilung": "" },
+    { "code": "C", "name": "Eier", "unterteilung": "" },
+    { "code": "D", "name": "Fisch", "unterteilung": "" },
+    { "code": "G", "name": "Milch / Laktose", "unterteilung": "" },
+    { "code": "N", "name": "Schalenfrüchte", "unterteilung": "N.1 Haselnüsse · N.2 Cashewkerne · N.3 Walnüsse · N.4 Mandeln · N.5 Pistazien · N.6 Pinienkerne" },
+    { "code": "W", "name": "Weichtiere", "unterteilung": "" }
+  ],
+  "kategorien": [
+    {
+      "titel": "Vorspeisen",
+      "hinweis": "",
+      "gerichte": [
+        { "name": "Bruschetta", "kennzeichnung": "A.1" },
+        { "name": "Caprese", "kennzeichnung": "A.1, G" },
+        { "name": "Homestyle Vorspeise", "kennzeichnung": "G" },
+        { "name": "Carpaccio", "kennzeichnung": "G" }
+      ]
+    },
+    {
+      "titel": "Suppen & Salate",
+      "hinweis": "",
+      "gerichte": [
+        { "name": "Linsensuppe", "kennzeichnung": "A.1" },
+        { "name": "Tomaten & Zwiebeln mit Brot", "kennzeichnung": "A.1" },
+        { "name": "Griechischer Salat", "kennzeichnung": "G" },
+        { "name": "Pollo mit Brot", "kennzeichnung": "A.1" }
+      ]
+    },
+    {
+      "titel": "Hauptspeisen",
+      "hinweis": "",
+      "gerichte": [
+        { "name": "Schnitzel", "kennzeichnung": "A.1, C" },
+        { "name": "Hähnchenbrust oder Hähnchenkeule mit Ofenkartoffeln oder Champignon-Sahnesoße", "kennzeichnung": "G" }
+      ]
+    },
+    {
+      "titel": "Pasta",
+      "hinweis": "",
+      "gerichte": [
+        { "name": "Pomodoro", "kennzeichnung": "A.1" },
+        { "name": "Aglio e Olio", "kennzeichnung": "A.1" },
+        { "name": "Bolognese", "kennzeichnung": "A.1" },
+        { "name": "Pollo", "kennzeichnung": "A.1, G" },
+        { "name": "Gorgonzola", "kennzeichnung": "A.1, G" },
+        { "name": "Lasagne", "kennzeichnung": "A.1, C, G" },
+        { "name": "Carbonara", "kennzeichnung": "A.1, C, G" },
+        { "name": "Pesto", "kennzeichnung": "A.1, G, N.6*" },
+        { "name": "Frutti di Mare", "kennzeichnung": "A.1, B, D, W" },
+        { "name": "Garnelen", "kennzeichnung": "A.1, B" },
+        { "name": "Salmone", "kennzeichnung": "A.1, D, G" }
+      ]
+    },
+    {
+      "titel": "Pizza",
+      "hinweis": "Alle Pizzen enthalten A.1, G. Zusätzlich:",
+      "gerichte": [
+        { "name": "Sardellen", "kennzeichnung": "D" },
+        { "name": "Tonno", "kennzeichnung": "D" },
+        { "name": "Pesto", "kennzeichnung": "N.6*" },
+        { "name": "Frutti di Mare", "kennzeichnung": "B, D, W" },
+        { "name": "Garnelen", "kennzeichnung": "B" }
+      ]
+    },
+    {
+      "titel": "Desserts",
+      "hinweis": "",
+      "gerichte": [
+        { "name": "Panna Cotta", "kennzeichnung": "G" },
+        { "name": "Crêpes", "kennzeichnung": "A.1, C, G" },
+        { "name": "Tiramisu", "kennzeichnung": "A.1, C, G" },
+        { "name": "Torte", "kennzeichnung": "A.1, C, G" },
+        { "name": "Pizza Nutella", "kennzeichnung": "A.1, G, N.1*" }
+      ]
+    }
+  ],
+  "fussnote": "* kann Spuren enthalten",
+  "schlusshinweis": "Bitte sprechen Sie unser Personal an"
+}
