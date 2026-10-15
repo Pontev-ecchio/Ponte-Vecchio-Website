@@ -1,0 +1,65 @@
+{
+  "anzeigen": true,
+  "ueberschrift": "Was unsere Gäste sagen",
+  "google_bewerten_link": "",
+  "google_place_id": "ChIJSUah5MPDn0cRYQsLnVMuhCQ",
+  "google_link": "",
+  "durchschnitt": "",
+  "anzahl": "",
+  "bewertungen": [
+    {
+      "name": "Name des Gastes",
+      "sterne": 5,
+      "datum": "vor 2 Wochen",
+      "text": "Beispieltext: Hier steht später eine echte Google-Bewertung, zum Beispiel über die Pizza, den Service oder die Atmosphäre.",
+      "bild": "/img/pizza-rucola.jpg",
+      "bild_alt": "Pizza Rucola",
+      "beispiel": true
+    },
+    {
+      "name": "Name des Gastes",
+      "sterne": 5,
+      "datum": "vor 1 Monat",
+      "text": "Beispieltext: Eine echte Bewertung über die Pasta. Sehr lange Texte werden nach sechs Zeilen sauber gekürzt.",
+      "bild": "/img/pasta-carbonara.jpg",
+      "bild_alt": "Penne Carbonara",
+      "beispiel": true
+    },
+    {
+      "name": "Name des Gastes",
+      "sterne": 5,
+      "datum": "vor 1 Monat",
+      "text": "Beispieltext: Eine echte Bewertung über Kaffee und Frühstück auf der Terrasse.",
+      "bild": "/img/cappuccino.jpg",
+      "bild_alt": "Cappuccino auf der Terrasse",
+      "beispiel": true
+    },
+    {
+      "name": "Name des Gastes",
+      "sterne": 5,
+      "datum": "vor 2 Monaten",
+      "text": "Beispieltext: Eine echte Bewertung über einen Abend an der Bar oder im Gastraum.",
+      "bild": "/img/gastraum.jpg",
+      "bild_alt": "Gastraum",
+      "beispiel": true
+    },
+    {
+      "name": "Name des Gastes",
+      "sterne": 5,
+      "datum": "vor 3 Monaten",
+      "text": "Beispieltext: Eine echte Bewertung über die Antipasti zum Teilen.",
+      "bild": "/img/antipasti-brett.jpg",
+      "bild_alt": "Antipasti-Brett",
+      "beispiel": true
+    },
+    {
+      "name": "Name des Gastes",
+      "sterne": 5,
+      "datum": "vor 3 Monaten",
+      "text": "Beispieltext: Eine echte Bewertung über einen Sommerabend auf der Terrasse.",
+      "bild": "/img/terrasse-abend.jpg",
+      "bild_alt": "Terrasse am Abend",
+      "beispiel": true
+    }
+  ]
+}
