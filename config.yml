@@ -101,6 +101,36 @@ collections:
           - { label: "Domain (z. B. https://www.ponte-vecchio-regensburg.de)", name: domain, widget: string }
           - { label: "Bei Google sichtbar machen (erst einschalten, wenn Impressum und Datenschutz fertig sind)", name: suchmaschinen_freigeben, widget: boolean, default: false }
 
+      - name: bestellung
+        label: Online-Bestellung & Reservierung
+        file: bestellung.json
+        format: json
+        fields:
+          - { label: "WhatsApp-Nummer für Bestellungen und Reservierungen (z. B. +49 15510 621579)", name: whatsapp, widget: string }
+          - { label: "Mindestvorlauf in Minuten (frühestmögliche Uhrzeit ab jetzt)", name: vorlauf_minuten, widget: number, value_type: int, default: 30 }
+          - { label: "Letzte wählbare Uhrzeit: Minuten vor Schluss", name: letzte_zeit_minuten_vor_schluss, widget: number, value_type: int, default: 30 }
+          - { label: "Uhrzeiten im Takt von … Minuten", name: takt_minuten, widget: number, value_type: int, default: 15 }
+          - { label: "Reservierung: wie viele Tage im Voraus", name: reservierung_tage_im_voraus, widget: number, value_type: int, default: 14 }
+          - { label: "Reservierung: maximale Personenzahl online", name: max_personen, widget: number, value_type: int, default: 8 }
+          - { label: "Kategorien, die NICHT bestellbar sind (Name wie in der Speisekarte)", name: kategorien_ausblenden, widget: list, required: false }
+          - { label: "Gerichte, die NICHT bestellbar sind (Name, bei gleichem Namen mit Beschreibung, z. B. „Wein 0,25 l“)", name: nicht_bestellbar, widget: list, required: false }
+          - { label: "Name der Pizza-Kategorie (bekommt Extrazutaten und „Scharf“)", name: pizza_kategorie, widget: string }
+          - { label: "Name der Pasta-Kategorie (bekommt Nudelsorte, Parmesan und „Scharf“)", name: pasta_kategorie, widget: string }
+          - { label: "Pasta ohne Nudelauswahl (z. B. Lasagne)", name: pasta_ohne_nudelwahl, widget: list, required: false }
+          - { label: "Preis für Extra Parmesan (z. B. 2,00 €)", name: parmesan_extra_preis, widget: string }
+          - label: Zusätzliche Artikel nur für die Bestellung (z. B. Weinflasche)
+            name: zusaetzlich
+            widget: list
+            required: false
+            summary: "{{fields.name}} – {{fields.preis}}"
+            fields:
+              - { label: Kategorie (Name wie in der Speisekarte), name: kategorie, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: Beschreibung, name: beschreibung, widget: string, required: false }
+              - { label: "Preis (z. B. 16,00 €)", name: preis, widget: string }
+              - { label: "Auswahl für den Gast, mit Komma getrennt (z. B. Rotwein, Weißwein). Leer = keine Auswahl", name: auswahl, widget: string, required: false }
+              - { label: "Größe für die Bestellnachricht (z. B. Flasche 0,75 l)", name: groesse, widget: string, required: false }
+
       - name: rechtliches
         label: Impressum & Datenschutz
         file: rechtliches.json

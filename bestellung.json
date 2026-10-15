@@ -1,0 +1,24 @@
+{
+  "whatsapp": "+49 15510 621579",
+  "vorlauf_minuten": 30,
+  "letzte_zeit_minuten_vor_schluss": 30,
+  "takt_minuten": 15,
+  "reservierung_tage_im_voraus": 14,
+  "max_personen": 8,
+  "kategorien_ausblenden": ["Bar"],
+  "nicht_bestellbar": ["Tiramisu", "Torte", "Wein 0,25 l"],
+  "pizza_kategorie": "Pizza",
+  "pasta_kategorie": "Pasta",
+  "pasta_ohne_nudelwahl": ["Lasagne"],
+  "parmesan_extra_preis": "2,00 €",
+  "zusaetzlich": [
+    {
+      "kategorie": "Kalte Getränke",
+      "name": "Wein (Flasche)",
+      "beschreibung": "Rot oder Weiß · 0,75 l",
+      "preis": "16,00 €",
+      "auswahl": "Rotwein, Weißwein",
+      "groesse": "Flasche 0,75 l"
+    }
+  ]
+}
