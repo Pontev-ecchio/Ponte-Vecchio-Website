@@ -29,6 +29,7 @@ B = load("betrieb.json")
 H = load("oeffnungszeiten.json")
 M = load("speisekarte.json")
 R = load("rechtliches.json")
+O = load("bestellung.json")
 
 DOMAIN = B.get("domain", "").rstrip("/")
 INDEX = bool(B.get("suchmaschinen_freigeben"))
@@ -94,7 +95,8 @@ def header(active=""):
       <a class="nl" href="/#bar">Bar &amp; Café</a>
       <a class="nl" href="/#zeiten">Öffnungszeiten</a>
       <a class="nl" href="/#kontakt">Kontakt</a>
-      <a class="btn btn-gold" href="tel:{TEL}">Reservieren</a>
+      <a class="nl" href="/bestellen/"{cur('order')}>Abholung bestellen</a>
+      <a class="btn btn-gold" href="/reservieren/"{cur('reserve')}>Reservieren</a>
     </nav>
   </div>
 </header>
@@ -135,7 +137,7 @@ def consent():
 """
 
 
-def footer():
+def footer(mbar=True):
     cc_link = '<li><button type="button" class="linkbtn" data-cc="open">Cookie-Einstellungen</button></li>' if PIXEL else ""
     return f"""</main>
 <footer class="ftr">
@@ -147,7 +149,7 @@ def footer():
     </div>
     <div>
       <h3>Seiten</h3>
-      <ul><li><a href="/">Startseite</a></li><li><a href="/speisekarte/">Speisekarte</a></li><li><a href="/#zeiten">Öffnungszeiten</a></li><li><a href="/#kontakt">Kontakt</a></li></ul>
+      <ul><li><a href="/">Startseite</a></li><li><a href="/speisekarte/">Speisekarte</a></li><li><a href="/bestellen/">Abholung bestellen</a></li><li><a href="/reservieren/">Tisch reservieren</a></li><li><a href="/#zeiten">Öffnungszeiten</a></li><li><a href="/#kontakt">Kontakt</a></li></ul>
     </div>
     <div>
       <h3>Rechtliches</h3>
@@ -156,15 +158,18 @@ def footer():
     <p class="copy">© {date.today().year} {e(B['name'])}</p>
   </div>
 </footer>
-<nav class="mbar" aria-label="Schnellaktionen">
-  <a href="/speisekarte/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6"/></svg>Speisekarte</a>
-  <a href="tel:{TEL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
-  <a href="{e(MAPS)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Route</a>
-</nav>
+{MBAR if mbar else ""}
 {consent()}<script src="/main.js" defer></script>
 </body>
 </html>
 """
+
+
+MBAR = f"""<nav class="mbar" aria-label="Schnellaktionen">
+  <a href="/speisekarte/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6"/></svg>Speisekarte</a>
+  <a href="tel:{TEL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+  <a href="{e(MAPS)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Route</a>
+</nav>"""
 
 
 # ---------- Öffnungszeiten ----------
@@ -242,7 +247,8 @@ def page_menu():
     body = f"""<div class="wrap menu-hero">
     <p class="eyebrow">Ponte Vecchio · {e(B['ort'])}</p>
     <h1 style="margin-top:.8rem">Speisekarte</h1>
-    <p class="lede" style="margin-top:1rem">Alle Speisen vor Ort oder zum Mitnehmen. Reservierung unter <span style="white-space:nowrap">{e(B['telefon'])}</span>.</p>
+    <p class="lede" style="margin-top:1rem">Alle Speisen vor Ort oder zum Mitnehmen.</p>
+    <div class="cta-row" style="margin-top:1.4rem"><a class="btn btn-gold" href="/bestellen/">Abholung bestellen</a><a class="btn btn-ghost" href="/reservieren/">Tisch reservieren</a></div>
   </div>
   <div class="wrap menu-strip">
     <div class="photo"><img src="/img/pizza-bresaola.jpg" alt="Pizza Rucola &amp; Bresaola auf kariertem Tischtuch" loading="lazy" decoding="async"></div>
@@ -276,6 +282,147 @@ def page_legal(kind):
     body = f'<div class="wrap legal"><h1>{title}</h1>{todo}<div class="legal-body">{md(R.get(kind, ""))}</div></div>'
     return head(f"{title} | Ponte Vecchio Regensburg", f"{title} der Ponte Vecchio Bar & Pizzeria, Regensburg.", f"/{kind}/") \
         + header() + body + footer()
+
+
+# ---------- Bestellen & Reservieren (per WhatsApp) ----------
+def euro(t):
+    """'12,00 €' -> 12.0; mehrere Preise oder kein Preis -> None"""
+    m = re.findall(r"(\d+)(?:,(\d{1,2}))?\s*€", t or "")
+    if len(m) != 1:
+        return None
+    return int(m[0][0]) + int((m[0][1] or "0").ljust(2, "0")) / 100
+
+
+def parts(t):
+    return [x.strip() for x in re.split(r",\s*|\s+oder\s+|\s+&\s+", t or "") if x.strip()]
+
+
+def order_data():
+    skip_cat = set(O.get("kategorien_ausblenden", []))
+    skip = set(O.get("nicht_bestellbar", []))
+    hot = {"label": "Schärfe", "type": "many", "hint": "optional, kostenlos", "plain": True,
+           "choices": [{"n": "Scharf (Chiliöl)"}]}
+    parm = {"label": "Parmesan", "type": "one",
+            "choices": [{"n": "Ohne Parmesan"}, {"n": "Mit Parmesan"},
+                        {"n": "Extra Parmesan", "p": euro(O.get("parmesan_extra_preis", "")) or 2.0}]}
+    menu = []
+    for k in M["kategorien"]:
+        if k["titel"] in skip_cat:
+            continue
+        is_pizza = k["titel"] == O.get("pizza_kategorie")
+        is_pasta = k["titel"] == O.get("pasta_kategorie")
+        extras = None
+        if is_pizza and k.get("extras"):
+            ch = [{"n": z, "p": euro(x["preis"])} for x in k["extras"] for z in parts(x["zutaten"])]
+            extras = {"label": "Extrazutaten", "type": "many", "hint": "optional, mehrere möglich", "choices": ch}
+        noodles = None
+        mm = re.search(r"\bmit\s+(.+)$", k.get("hinweis", "")) if is_pasta else None
+        if mm:
+            noodles = {"label": "Nudelsorte", "type": "one", "choices": [{"n": x} for x in parts(mm.group(1))]}
+        items = []
+        for g in k.get("gerichte", []):
+            name, desc = g["name"].strip(), (g.get("beschreibung") or "").strip()
+            if name in skip or f"{name} {desc}".strip() in skip:
+                continue
+            p = euro(g.get("preis", ""))
+            if p is None:
+                print("Hinweis: nicht online bestellbar (Preis unklar):", name)
+                continue
+            it = {"n": name, "d": desc, "p": p, "groups": []}
+            if is_pizza:
+                it["prefix"] = "Pizza"
+                it["groups"] = ([extras] if extras else []) + [hot]
+            elif is_pasta:
+                if noodles and name not in O.get("pasta_ohne_nudelwahl", []):
+                    it["prefix"] = "Pasta"
+                    it["groups"].append(noodles)
+                it["groups"] += [parm, hot]
+            elif ", " in name:  # mehrere Sorten in einer Zeile, z. B. Softdrinks
+                it["groups"].append({"label": "Sorte", "type": "one", "choices": [{"n": x} for x in name.split(", ")]})
+                it["useChoice"], it["size"] = True, desc
+            else:
+                m2 = re.match(r".*\bmit\s+(.+?)\s+oder\s+(.+)$", desc)  # z. B. „mit Pommes oder Kartoffelpüree“
+                if m2:
+                    it["groups"].append({"label": "Beilage", "type": "one", "choices": [{"n": m2.group(1)}, {"n": m2.group(2)}]})
+            items.append(it)
+        for a in O.get("zusaetzlich", []):
+            if a.get("kategorie") == k["titel"] and euro(a.get("preis")) is not None:
+                it = {"n": a["name"], "d": a.get("beschreibung", ""), "p": euro(a["preis"]), "groups": []}
+                if a.get("auswahl"):
+                    it["groups"].append({"label": "Sorte", "type": "one", "choices": [{"n": x} for x in parts(a["auswahl"])]})
+                    it["useChoice"] = True
+                    it["size"] = a.get("groesse") or a.get("beschreibung", "").split("·")[-1].strip()
+                items.append(it)
+        if items:
+            menu.append({"id": slug(k["titel"]), "name": k["titel"], "note": k.get("hinweis", ""), "items": items,
+                         "extras": k.get("extras") if is_pizza else None})
+    wa = re.sub(r"\D", "", O.get("whatsapp") or B["telefon"])
+    settings = {"wa": wa, "waText": O.get("whatsapp") or B["telefon"],
+                "lead": int(O.get("vorlauf_minuten", 30)), "last": int(O.get("letzte_zeit_minuten_vor_schluss", 30)),
+                "step": int(O.get("takt_minuten", 15)), "resDays": int(O.get("reservierung_tage_im_voraus", 14)),
+                "maxP": int(O.get("max_personen", 8)),
+                "hours": [[[mins(x["von"]), mins(x["bis"])] for x in (d.get("zeiten") or [])] for d in H["tage"]],
+                "days": [d["tag"] for d in H["tage"]]}
+    js = json.dumps({"menu": menu, "settings": settings}, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script id="order-data" type="application/json">{js}</script>'
+
+
+WAIT_NOTE = (f'Nach dem Absenden bitte auf unsere Antwort im Chat warten. Falls innerhalb von 5 Minuten keine Antwort kommt, '
+             f'bitte anrufen: <span style="white-space:nowrap">{e(O.get("whatsapp") or B["telefon"])}</span>.')
+PAY_NOTE = '<p class="o-pay"><b>Bezahlung vor Ort</b> · bar oder mit Karte: EC-Karte, Visa, Mastercard, American Express und weitere</p>'
+
+
+def page_order():
+    body = f"""<div class="wrap o-hero">
+    <p class="eyebrow">Online bestellen · {e(B['strasse'])}</p>
+    <h1 id="o-title">Abholung bestellen</h1>
+    <p class="lede" id="o-lead">Gerichte mit + auswählen, unten auf den Warenkorb tippen, Abholzeit wählen und per WhatsApp abschicken. Wir bestätigen Ihre Bestellung im Chat.</p>
+    <div class="o-table" id="o-table" hidden><p id="o-table-txt"></p><a class="o-link" href="/reservieren/">Ändern</a></div>
+    {PAY_NOTE}
+  </div>
+  <nav class="menu-nav" aria-label="Kategorien"><div class="wrap" id="o-chips"></div></nav>
+  <div class="wrap menu-body" id="o-menu"></div>
+  <div class="wrap menu-foot"><p>{WAIT_NOTE}</p><p>Alle Preise in Euro inkl. MwSt. Informationen zu Allergenen und Zusatzstoffen erhalten Sie auf Nachfrage bei unserem Personal.</p></div>
+  <div class="o-bar"><div class="wrap"><button type="button" class="o-barbtn o-empty" id="o-open"><span><span class="o-cnt" id="o-cnt">0</span><span id="o-barlbl">Noch nichts ausgewählt</span></span><span id="o-sum">0,00 €</span></button></div></div>
+  <div class="o-scrim" id="o-opt" hidden><div class="o-sheet" role="dialog" aria-modal="true" aria-labelledby="o-opt-t" id="o-optbox"></div></div>
+  <div class="o-scrim" id="o-cart" hidden><div class="o-sheet" role="dialog" aria-modal="true" aria-labelledby="o-cart-t" id="o-cartbox"></div></div>
+  {order_data()}<script src="/bestellen.js" defer></script>
+"""
+    return (head("Abholung bestellen | Ponte Vecchio Regensburg",
+                 "Pizza, Pasta und mehr im Ponte Vecchio Regensburg online auswählen und per WhatsApp zur Abholung bestellen.", "/bestellen/")
+            .replace("<body>", '<body data-page="bestellen">') + header("order") + body + footer(mbar=False))
+
+
+def page_reserve():
+    body = f"""<div class="wrap o-hero o-narrow">
+    <p class="eyebrow">Tisch reservieren · {e(B['strasse'])}</p>
+    <h1>Tisch reservieren</h1>
+    <p class="lede">Tag, Uhrzeit und Personenzahl wählen und per WhatsApp senden. Auf Wunsch bestellen Sie Ihr Essen gleich mit vor. Wir bestätigen Ihre Reservierung im Chat.</p>
+  </div>
+  <div class="wrap o-narrow o-form">
+    <section class="o-sec"><h2>Tag</h2><div class="o-days" id="r-days"></div></section>
+    <section class="o-sec"><h2>Uhrzeit</h2><div id="r-times"></div></section>
+    <section class="o-sec"><h2>Personen</h2><div class="o-opts" id="r-persons"></div>
+      <p class="o-sub">Kinderstuhl</p><div class="o-opts" id="r-kids"></div></section>
+    <section class="o-sec"><h2>Ihre Angaben</h2>
+      <div class="o-fld"><label for="r-name">Name</label><input id="r-name" autocomplete="name" placeholder="z. B. Maria Huber"></div>
+      <div class="o-fld"><label for="r-note">Anmerkung (optional)</label><textarea id="r-note" placeholder="z. B. Geburtstag, Terrasse gewünscht"></textarea></div>
+    </section>
+    <section class="o-sec"><h2>Essen vorbestellen?</h2>
+      <p class="o-muted o-small">Wenn Sie möchten, wählen Sie Ihr Essen schon jetzt aus. Wir bereiten es zu Ihrer Ankunft vor.</p>
+      <div class="o-opts" id="r-food"></div></section>
+    <div class="o-res-sum"><h3>Ihre Reservierung</h3><p id="r-sum"></p></div>
+    <p class="o-err" id="r-err" hidden></p>
+    <a class="o-wa o-send" id="r-send" href="#" target="_blank" rel="noopener">Per WhatsApp reservieren</a>
+    <div id="r-hint"><p class="o-hint">WhatsApp öffnet sich mit Ihrer fertigen Anfrage an {e(O.get("whatsapp") or B["telefon"])}. Sie müssen nur noch auf Senden tippen.</p></div>
+    <p class="o-hint">{WAIT_NOTE}</p>
+    <p class="o-hint">Die Reservierung gilt erst nach unserer Bestätigung. Gruppen ab {int(O.get("max_personen", 8)) + 1} Personen bitte telefonisch anfragen: <a href="tel:{TEL}">{e(B['telefon'])}</a>.</p>
+  </div>
+  {order_data()}<script src="/bestellen.js" defer></script>
+"""
+    return (head("Tisch reservieren | Ponte Vecchio Regensburg",
+                 "Tisch im Ponte Vecchio Regensburg online auswählen und per WhatsApp reservieren, auf Wunsch mit vorbestelltem Essen.", "/reservieren/")
+            .replace("<body>", '<body data-page="reservieren">') + header("reserve") + body + footer(mbar=False))
 
 
 # ---------- Schriften (werden beim Build lokal gespeichert, kein Google-Abruf durch Besucher) ----------
@@ -328,18 +475,20 @@ def main():
         low = f.lower()
         if low.endswith((".jpg", ".jpeg", ".png", ".webp", ".gif")):
             shutil.copy(src, os.path.join(DIST, "img", f))
-        elif f in ("style.css", "main.js", "favicon.svg"):
+        elif f in ("style.css", "main.js", "bestellen.js", "favicon.svg"):
             shutil.copy(src, os.path.join(DIST, f))
         elif f in ("index.html", "config.yml"):
             shutil.copy(src, os.path.join(DIST, "admin", f))
     fonts()
     write("/", page_home())
     write("/speisekarte/", page_menu())
+    write("/bestellen/", page_order())
+    write("/reservieren/", page_reserve())
     write("/impressum/", page_legal("impressum"))
     write("/datenschutz/", page_legal("datenschutz"))
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write("User-agent: *\nDisallow: /admin/\n" + (f"Sitemap: {DOMAIN}/sitemap.xml\n" if INDEX else "Disallow: /\n"))
-    urls = "".join(f"<url><loc>{e(DOMAIN)}{p}</loc></url>" for p in ["/", "/speisekarte/", "/impressum/", "/datenschutz/"])
+    urls = "".join(f"<url><loc>{e(DOMAIN)}{p}</loc></url>" for p in ["/", "/speisekarte/", "/bestellen/", "/reservieren/", "/impressum/", "/datenschutz/"])
     with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
         f.write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     print("Fertig: dist/")
