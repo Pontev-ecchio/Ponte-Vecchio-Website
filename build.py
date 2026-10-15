@@ -96,8 +96,7 @@ def header(active=""):
       <a class="nl" href="/#zeiten">Öffnungszeiten</a>
       <a class="nl" href="/#kontakt">Kontakt</a>
       <a class="nl" href="/bestellen/"{cur('order')}>Abholung bestellen</a>
-      <a class="btn btn-gold hdr-d" href="/reservieren/"{cur('reserve')}>Reservieren</a>
-      <a class="btn btn-ghost hdr-m" href="/speisekarte/"{cur('menu')}>Speisekarte</a>
+      <a class="btn btn-gold" href="/reservieren/"{cur('reserve')}>Reservieren</a>
     </nav>
   </div>
 </header>
@@ -166,9 +165,10 @@ def footer(mbar=True):
 """
 
 
-MBAR = """<nav class="mbar" aria-label="Schnellaktionen">
-  <a href="/reservieren/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Tisch reservieren</a>
-  <a href="/bestellen/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Abholung bestellen</a>
+MBAR = f"""<nav class="mbar" aria-label="Schnellaktionen">
+  <a href="/speisekarte/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6"/></svg>Speisekarte</a>
+  <a href="tel:{TEL}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+  <a href="{e(MAPS)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Route</a>
 </nav>"""
 
 
