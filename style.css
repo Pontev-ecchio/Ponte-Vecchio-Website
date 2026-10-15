@@ -50,7 +50,7 @@ p{margin:0}
 .btn-ghost:hover{border-color:var(--cream);background:#f2e9dc0d}
 .hdr .btn{min-height:42px;padding:.55rem 1.1rem;font-size:.85rem}
 @media (max-width:860px){.nav .nl{display:none}}
-@media (max-width:420px){.hdr .btn{display:none}}
+@media (max-width:860px){.hdr .btn{display:none}}
 
 /* Photo frames (placeholders until real photos are inserted) */
 .photo{position:relative;overflow:hidden;background:
