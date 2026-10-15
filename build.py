@@ -238,8 +238,10 @@ def reviews_section():
                      f'<p class="rv-by"><b>{e(r.get("name", ""))}</b><span>{e(r.get("datum", ""))} · Google</span></p></div></li>')
     avg = RV.get("durchschnitt", "").strip()
     cnt = RV.get("anzahl", "").strip()
-    score = (f'<p class="rv-score"><b>{e(avg)}</b>{stars(round(float(avg.replace(",", ".")))) if re.match(r"^[0-5]([.,]\\d)?$", avg) else ""}'
-             f'<span>{e(cnt) + " Bewertungen" if cnt else ""} auf Google</span></p>') if avg else ""
+    avg_ok = bool(re.match(r"^[0-5]([.,][0-9])?$", avg))
+    avg_stars = stars(round(float(avg.replace(",", ".")))) if avg_ok else ""
+    cnt_txt = e(cnt) + " Bewertungen " if cnt else ""
+    score = f'<p class="rv-score"><b>{e(avg)}</b>{avg_stars}<span>{cnt_txt}auf Google</span></p>' if avg else ""
     return f"""
   <section class="sec" id="bewertungen" aria-labelledby="rv-h">
     <div class="wrap">
