@@ -214,7 +214,8 @@ GOOGLE_G = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="
 
 def review_links():
     pid = RV.get("google_place_id", "").strip()
-    write = f"https://search.google.com/local/writereview?placeid={urllib.parse.quote(pid)}" if pid else MAPS
+    direct = RV.get("google_bewerten_link", "").strip()
+    write = direct or (f"https://search.google.com/local/writereview?placeid={urllib.parse.quote(pid)}" if pid else MAPS)
     show = RV.get("google_link", "").strip() or (f"https://search.google.com/local/reviews?placeid={urllib.parse.quote(pid)}" if pid else MAPS)
     return write, show
 

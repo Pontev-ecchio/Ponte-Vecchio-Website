@@ -138,7 +138,8 @@ collections:
         fields:
           - { label: Bereich auf der Startseite anzeigen, name: anzeigen, widget: boolean, default: true }
           - { label: Überschrift, name: ueberschrift, widget: string }
-          - { label: "Google Place-ID (für den direkten Bewerten-Link, beginnt meist mit ChIJ)", name: google_place_id, widget: string, required: false }
+          - { label: "Direkter Bewerten-Link von Google (z. B. https://g.page/r/…/review) – öffnet sofort das Bewertungsfenster", name: google_bewerten_link, widget: string, required: false }
+          - { label: "Google Place-ID (nur nötig, wenn kein Bewerten-Link eingetragen ist; beginnt mit ChIJ)", name: google_place_id, widget: string, required: false }
           - { label: "Link zu allen Bewertungen auf Google (optional)", name: google_link, widget: string, required: false }
           - { label: "Durchschnitt auf Google (z. B. 4,8) – leer = nicht anzeigen", name: durchschnitt, widget: string, required: false }
           - { label: "Anzahl Bewertungen auf Google (z. B. 37)", name: anzahl, widget: string, required: false }
