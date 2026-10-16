@@ -230,7 +230,9 @@ def reviews_section():
         return ""
     write, show = review_links()
     cards = []
-    real = [r for r in RV.get("bewertungen", []) if not r.get("beispiel")]
+    # Beispielkarten nur in Testversionen zeigen, nie auf der Live-Seite (Netlify setzt CONTEXT=production)
+    demo_ok = os.environ.get("CONTEXT") != "production"
+    real = [r for r in RV.get("bewertungen", []) if demo_ok or not r.get("beispiel")]
     for r in real[:6]:
         img = (f'<div class="photo rv-photo"><img src="{e(r["bild"])}" alt="{e(r.get("bild_alt", ""))}" loading="lazy" decoding="async"></div>'
                if r.get("bild", "").strip() else "")
