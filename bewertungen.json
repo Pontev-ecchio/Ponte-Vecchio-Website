@@ -8,58 +8,58 @@
   "anzahl": "",
   "bewertungen": [
     {
-      "name": "Name des Gastes",
+      "name": "Melanie M.",
       "sterne": 5,
-      "datum": "vor 2 Wochen",
-      "text": "Beispieltext: Hier steht später eine echte Google-Bewertung, zum Beispiel über die Pizza, den Service oder die Atmosphäre.",
+      "datum": "Juli 2026",
       "bild": "/img/pizza-rucola.jpg",
-      "bild_alt": "Pizza Rucola",
-      "beispiel": true
+      "bild_alt": "Pizza mit Rucola und Cherrytomaten",
+      "text": "Wir wurden super lieb empfangen und sehr zuvorkommend behandelt. Die Pizzen schmecken klasse und die Portionen sind wirklich groß! Man kann die Speisen mitnehmen oder auch vor Ort, drinnen oder draußen, genießen!\nWenn wir nochmal nach Regensburg kommen, kommen wir auf jeden Fall wieder! Danke👍🏻",
+      "beispiel": false
     },
     {
-      "name": "Name des Gastes",
+      "name": "MC",
       "sterne": 5,
-      "datum": "vor 1 Monat",
-      "text": "Beispieltext: Eine echte Bewertung über die Pasta. Sehr lange Texte werden nach sechs Zeilen sauber gekürzt.",
-      "bild": "/img/pasta-carbonara.jpg",
-      "bild_alt": "Penne Carbonara",
-      "beispiel": true
-    },
-    {
-      "name": "Name des Gastes",
-      "sterne": 5,
-      "datum": "vor 1 Monat",
-      "text": "Beispieltext: Eine echte Bewertung über Kaffee und Frühstück auf der Terrasse.",
-      "bild": "/img/cappuccino.jpg",
-      "bild_alt": "Cappuccino auf der Terrasse",
-      "beispiel": true
-    },
-    {
-      "name": "Name des Gastes",
-      "sterne": 5,
-      "datum": "vor 2 Monaten",
-      "text": "Beispieltext: Eine echte Bewertung über einen Abend an der Bar oder im Gastraum.",
-      "bild": "/img/gastraum.jpg",
-      "bild_alt": "Gastraum",
-      "beispiel": true
-    },
-    {
-      "name": "Name des Gastes",
-      "sterne": 5,
-      "datum": "vor 3 Monaten",
-      "text": "Beispieltext: Eine echte Bewertung über die Antipasti zum Teilen.",
+      "datum": "September 2025",
       "bild": "/img/antipasti-brett.jpg",
-      "bild_alt": "Antipasti-Brett",
-      "beispiel": true
+      "bild_alt": "Antipasti-Brett mit Schinken, Salami, Käse und Oliven",
+      "text": "Wirklich leckeres Essen und supernette Besitzer. Wir sind durch Zufall hier gelandet und waren wirklich sehr positiv überrascht.\nGegessen haben wir Bruschetta, Caprese und eine Pizza Tonno. Grade bei letzterer ist der Thunfisch ja manchmal etwas trocken; hier war er wirklich saftig und der Teig war trotzdem knusprig.",
+      "beispiel": false
     },
     {
-      "name": "Name des Gastes",
+      "name": "Birgit HB",
       "sterne": 5,
-      "datum": "vor 3 Monaten",
-      "text": "Beispieltext: Eine echte Bewertung über einen Sommerabend auf der Terrasse.",
+      "datum": "März 2026",
       "bild": "/img/terrasse-abend.jpg",
-      "bild_alt": "Terrasse am Abend",
-      "beispiel": true
+      "bild_alt": "Terrasse des Ponte Vecchio am Abend",
+      "text": "waren zu viert zum Mittagessen hier.\nGroße sehr gute Pizza mit frischen Teig.\nSchneller freundlicher Service.\nSchönes kleines Ambiente.\nDraußen sitzen wäre möglich, war aber uns noch zu kalt.",
+      "beispiel": false
+    },
+    {
+      "name": "Sasa S.",
+      "sterne": 5,
+      "datum": "Mai 2025",
+      "bild": "/img/gastraum.jpg",
+      "bild_alt": "Gastraum mit Pendelleuchten und Holztischen",
+      "text": "Die beste Pizzeria in der ich war alles war top sieht super schön aus und sehr sauberes Lokal die super freundliche Familie und die Preise sind top 👍 👍👍👍👍",
+      "beispiel": false
+    },
+    {
+      "name": "Boris L.",
+      "sterne": 5,
+      "datum": "Oktober 2026",
+      "bild": "/img/pizza-bresaola.jpg",
+      "bild_alt": "Pizza mit Rucola, Parmesan und Bresaola",
+      "text": "Super authentische Italienische Pizza, frische Salate, und sehr nettes Personal. Immer wieder gerne.",
+      "beispiel": false
+    },
+    {
+      "name": "Birgit Martina B.",
+      "sterne": 4,
+      "datum": "Juni 2026",
+      "bild": "/img/innen-weinwand.jpg",
+      "bild_alt": "Weinwand mit Holzuhr und Sitzecke",
+      "text": "Spontan wählte ich dieses Lokal aus – und wurde positiv überrascht. Ein Familienbetrieb mit sehr freundlichem Service. Das Essen war lecker, der Wein angenehm kühl serviert. Die Räumlichkeiten sind klimatisiert, was den Aufenthalt zusätzlich angenehm macht. Insgesamt ein stimmiger Besuch. Kleines, aber feines Lokal.",
+      "beispiel": false
     }
   ]
 }

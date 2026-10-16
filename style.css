@@ -341,7 +341,7 @@ body[data-page] .cc{bottom:calc(80px + var(--safe-b))}
 .rv-stars{color:var(--amber);letter-spacing:.12em;font-size:1rem;line-height:1}
 .rv-off{color:#cdb99c40}
 .rv-demo{font:600 .62rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--beige);padding:.3rem .5rem;border-radius:4px}
-.rv-text{color:var(--beige);font-size:.95rem;flex:1;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.rv-text{color:var(--beige);font-size:.95rem;flex:1;white-space:pre-line}
 .rv-by{display:grid;gap:.1rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.8rem}
 .rv-by b{font:600 1.1rem/1.2 var(--f-display);color:var(--cream)}
 .rv-note{margin-top:1.2rem;font-size:.82rem;color:var(--muted)}
