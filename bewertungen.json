@@ -11,8 +11,8 @@
       "name": "Melanie M.",
       "sterne": 5,
       "datum": "Juli 2026",
-      "bild": "/img/pizza-rucola.jpg",
-      "bild_alt": "Pizza mit Rucola und Cherrytomaten",
+      "bild": "/img/rv-pizza-margherita.jpg",
+      "bild_alt": "Pizza Margherita aus dem Steinofen",
       "text": "Wir wurden super lieb empfangen und sehr zuvorkommend behandelt. Die Pizzen schmecken klasse und die Portionen sind wirklich groß! Man kann die Speisen mitnehmen oder auch vor Ort, drinnen oder draußen, genießen!\nWenn wir nochmal nach Regensburg kommen, kommen wir auf jeden Fall wieder! Danke👍🏻",
       "beispiel": false
     },
@@ -20,44 +20,44 @@
       "name": "MC",
       "sterne": 5,
       "datum": "September 2025",
-      "bild": "/img/antipasti-brett.jpg",
-      "bild_alt": "Antipasti-Brett mit Schinken, Salami, Käse und Oliven",
+      "bild": "/img/rv-antipasti.jpg",
+      "bild_alt": "Antipasti-Brett mit Bruschetta, Schinken, Salami und Käse",
       "text": "Wirklich leckeres Essen und supernette Besitzer. Wir sind durch Zufall hier gelandet und waren wirklich sehr positiv überrascht.\nGegessen haben wir Bruschetta, Caprese und eine Pizza Tonno. Grade bei letzterer ist der Thunfisch ja manchmal etwas trocken; hier war er wirklich saftig und der Teig war trotzdem knusprig.",
       "beispiel": false
     },
     {
-      "name": "Birgit HB",
+      "name": "Barbara H.",
       "sterne": 5,
-      "datum": "März 2026",
-      "bild": "/img/terrasse-abend.jpg",
-      "bild_alt": "Terrasse des Ponte Vecchio am Abend",
-      "text": "waren zu viert zum Mittagessen hier.\nGroße sehr gute Pizza mit frischen Teig.\nSchneller freundlicher Service.\nSchönes kleines Ambiente.\nDraußen sitzen wäre möglich, war aber uns noch zu kalt.",
-      "beispiel": false
-    },
-    {
-      "name": "Sasa S.",
-      "sterne": 5,
-      "datum": "Mai 2025",
-      "bild": "/img/gastraum.jpg",
-      "bild_alt": "Gastraum mit Pendelleuchten und Holztischen",
-      "text": "Die beste Pizzeria in der ich war alles war top sieht super schön aus und sehr sauberes Lokal die super freundliche Familie und die Preise sind top 👍 👍👍👍👍",
+      "datum": "Dezember 2025",
+      "bild": "/img/rv-pizza-champignon.jpg",
+      "bild_alt": "Pizza mit Champignons",
+      "text": "Ich wurde super freundlich bedient obwohl ich kurz vor Ende der Öffnungszeit (mittags) kam. Die Champignonpizza war auch sehr gut.",
       "beispiel": false
     },
     {
       "name": "Boris L.",
       "sterne": 5,
       "datum": "Oktober 2026",
-      "bild": "/img/pizza-bresaola.jpg",
-      "bild_alt": "Pizza mit Rucola, Parmesan und Bresaola",
+      "bild": "/img/rv-carpaccio.jpg",
+      "bild_alt": "Rucola mit Bresaola, Parmesan und Cherrytomaten",
       "text": "Super authentische Italienische Pizza, frische Salate, und sehr nettes Personal. Immer wieder gerne.",
+      "beispiel": false
+    },
+    {
+      "name": "Sasa S.",
+      "sterne": 5,
+      "datum": "Mai 2025",
+      "bild": "/img/rv-gastraum.jpg",
+      "bild_alt": "Gastraum des Ponte Vecchio",
+      "text": "Die beste Pizzeria in der ich war alles war top sieht super schön aus und sehr sauberes Lokal die super freundliche Familie und die Preise sind top 👍 👍👍👍👍",
       "beispiel": false
     },
     {
       "name": "Birgit Martina B.",
       "sterne": 4,
       "datum": "Juni 2026",
-      "bild": "/img/innen-weinwand.jpg",
-      "bild_alt": "Weinwand mit Holzuhr und Sitzecke",
+      "bild": "/img/rv-panna-cotta.jpg",
+      "bild_alt": "Panna Cotta mit Erdbeeren",
       "text": "Spontan wählte ich dieses Lokal aus – und wurde positiv überrascht. Ein Familienbetrieb mit sehr freundlichem Service. Das Essen war lecker, der Wein angenehm kühl serviert. Die Räumlichkeiten sind klimatisiert, was den Aufenthalt zusätzlich angenehm macht. Insgesamt ein stimmiger Besuch. Kleines, aber feines Lokal.",
       "beispiel": false
     }
