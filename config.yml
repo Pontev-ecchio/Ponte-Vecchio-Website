@@ -157,6 +157,17 @@ collections:
               - { label: Bildbeschreibung, name: bild_alt, widget: string, required: false }
               - { label: "Beispieltext (Platzhalter) – vor dem Livegang ausschalten", name: beispiel, widget: boolean, default: false }
 
+      - name: weihnachten
+        label: Weihnachts-Intro (Startseite)
+        file: weihnachten.json
+        format: json
+        fields:
+          - { label: "Intro anzeigen (ausschalten = sofort aus)", name: aktiv, widget: boolean, default: true }
+          - { label: "Anzeigen ab (Datum)", name: von, widget: datetime, format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+          - { label: "Anzeigen bis (Datum)", name: bis, widget: datetime, format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+          - { label: "Großer Gruß (z. B. Buon Natale)", name: gruss, widget: string }
+          - { label: "Zeile darunter", name: untertitel, widget: string, required: false }
+
       - name: rechtliches
         label: Impressum & Datenschutz
         file: rechtliches.json

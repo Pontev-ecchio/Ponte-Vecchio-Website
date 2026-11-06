@@ -31,6 +31,7 @@ M = load("speisekarte.json")
 R = load("rechtliches.json")
 O = load("bestellung.json")
 RV = load("bewertungen.json")
+XM = load("weihnachten.json")
 AL = load("allergene.json")
 AL_PATH = "/allergene-und-zusatzstoffe/"
 
@@ -266,6 +267,28 @@ def reviews_section():
 """
 
 
+# ---------- Weihnachts-Intro (Startseite, im Admin ein-/ausschaltbar) ----------
+def xmas_intro():
+    if not XM.get("aktiv"):
+        return ""
+    # Testversionen zeigen das Intro sofort, die Live-Seite nur im eingestellten Zeitraum
+    von = XM.get("von", "") if os.environ.get("CONTEXT") == "production" else "2000-01-01"
+    conf = json.dumps({"von": von, "bis": XM.get("bis", "2099-12-31"),
+                       "g": XM.get("gruss", "Buon Natale"), "s": XM.get("untertitel", "")}, ensure_ascii=False).replace("</", "<\\/")
+    return """<script>(function(C){
+var h=document.documentElement,t=new Date().toISOString().slice(0,10);
+try{if(sessionStorage.getItem("pv-xm"))return}catch(e){}
+if(t<C.von||t>C.bis||!window.matchMedia||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+var d=document.createElement("div");d.id="xm";d.className="xm";
+d.innerHTML='<canvas aria-hidden="true"></canvas><div class="xm-txt"><p class="xm-k">Ponte Vecchio</p><p class="xm-g"></p><p class="xm-s"></p></div><button type="button" class="xm-skip">Überspringen</button>';
+d.querySelector(".xm-g").textContent=C.g;d.querySelector(".xm-s").textContent=C.s;
+document.body.insertBefore(d,document.body.firstChild);h.classList.add("xm-lock");
+var f=window.__xmFinish=function(){if(!d.parentNode)return;d.parentNode.removeChild(d);h.classList.remove("xm-lock");try{sessionStorage.setItem("pv-xm","1")}catch(e){}};
+setTimeout(function(){if(!d.classList.contains("xm-run"))f()},2500);setTimeout(f,7000);
+})(""" + conf + """);</script><script src="/weihnachten.js" defer></script>
+"""
+
+
 # ---------- Seiten ----------
 def page_home():
     t = open(os.path.join(ROOT, "templates_home.html"), encoding="utf-8").read()
@@ -280,7 +303,7 @@ def page_home():
     t += f'<script id="hours-data" type="application/json">{hours_js()}</script>' + schema()
     return (head("Ponte Vecchio Regensburg | Bar, Café & Pizzeria",
                  "Pizza, Pasta, Kaffee und Drinks im Ponte Vecchio in Regensburg. Speisekarte, Öffnungszeiten, Adresse und telefonische Reservierung auf einen Blick.", "/")
-            + header() + t + footer())
+            + xmas_intro() + header() + t + footer())
 
 
 def price_html(p):
@@ -569,7 +592,7 @@ def main():
         low = f.lower()
         if low.endswith((".jpg", ".jpeg", ".png", ".webp", ".gif")):
             shutil.copy(src, os.path.join(DIST, "img", f))
-        elif f in ("style.css", "main.js", "bestellen.js", "favicon.svg"):
+        elif f in ("style.css", "main.js", "bestellen.js", "weihnachten.js", "favicon.svg"):
             shutil.copy(src, os.path.join(DIST, f))
         elif f in ("index.html", "config.yml"):
             shutil.copy(src, os.path.join(DIST, "admin", f))
